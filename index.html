@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Add CSS at the head of HTML file -->
+    <link rel="stylesheet" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+	<audio id="audio" loop>
+	<source src="./images/motor_audio.mp3" type="audio/mpeg">
+	</audio>
+
+    <div class="sim" >
+			<p style="text-align: center;background-color: #634380;font-weight: bolder;padding: 6px 0 6px 0; font-size: larger;
+    		margin-top:0px;color: white">
+            BERNOULLI'S SIMULATION</p>
+			<div class="sim_table"  >
+				<div class="item1">
+
+					<div id="mycanvas" >
+
+						<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="500px" x="0px" y="0px"
+							 viewBox="0 0 1278.6 856.9" style="enable-background:new 0 0 1278.6 856.9;" xml:space="preserve">
+								
+                            
+
+
+
+                            </svg>
+
+						<div class="instruction">
+							<h5 ><u>Instructions</u></h5>
+							<p id="steps">Welcome to the Simulator! <br>Start the Simulator by using Power On Button.
+
+							</p>
+						</div>
+						
+						
+				
+
+							</div>
+							</div>
+
+
+
+							<button class="item2" type="button"  style="width:100%; border: solid #080808 3px;" id="enable" onclick="power()"> POWER ON </button>
+
+							<div class="item3" style="font-size: 20px; font-weight: bold; display: flex; flex-direction: row; gap: 20px; align-content: center; justify-content: center; align-self: auto; ">
+								Valve Positioning
+								<div style="display: flex; flex-direction: column">
+									
+									<input id="flow-rate-slider" list="markers" name ="slider" min="0" max="3" type="range" step="1" value="0" disabled="True" onchange="updateValvePositioning()" >
+								
+									<datalist id="values">
+										<option value="0" label="0"></option>
+										<option value="1" label="1"></option>
+										<option value="2" label="2"></option>
+										<option value="3" label="3"></option>
+									</datalist>
+
+								</div>
+								  
+							</div>
+
+
+							<button class="itemx" type="button"  style="width:100%; border: solid #080808 3px;" id="purze" disabled="True" onclick="purzeAction()"> CLOSE GATE VALVE </button>
+
+							<div class="page-break"></div>
+							<div class="item6">
+
+								<h1 style="text-align: center;">OBSERVATION</h1>
+
+								<div class="data-div">
+									<div class="item4" style="padding: 0%;display: flex;flex-direction: column;gap: 5px;">
+										<h2 style="text-align: center;padding: .5%;margin: 0%;background-color: #634380;color: white;">Formulaes</h2>
+
+										
+										<!-- bernouli formula -->
+										<p style="text-align: center;  font-size:20px; font-weight: bolder; padding: 10px;">
+
+			       E<sub>n</sub>=P<sub>n</sub>/ρg + v<sub>n</sub><sup>2</sup>/2g + z<sub>n</sub>
+				
+
+											
+										<math style="font-weight: bold; font-size:15px;" xmlns="http://www.w3.org/1998/Math/MathML">
+											<msub>
+												
+												
+										</math>	
+										<BR>
+											V<sub>n</sub>=Q/a<sub>n</sub>
+												
+									</p>
+<!-- bernouli formula till here -->
+
+								<p style="text-align: center;  font-size:20px; font-weight: bolder; padding: 10px;">
+											<math style="font-weight: bold;" xmlns="http://www.w3.org/1998/Math/MathML">
+												<msub>
+													<mi>Q</mi>
+													<mrow class="MJX-TeXAtom-ORD">
+													
+													</mrow>
+												</msub>
+												<mo>=</mo>
+												<mfrac>
+												<mrow>
+													<msub>
+													<mi>A</mi>
+													</msub>
+													<msub>
+													<mi>x</mi>
+													</msub>
+													<msub>
+													<mi>H</mi>
+													</msub>
+												</mrow>
+													<msub>
+													<mi>t</mi>
+													</msub>
+												</mfrac>
+											</math>
+
+
+												
+												
+											
+		
+										<br><br>
+
+
+										
+        H = H<sub>2</sub> - H<sub>1</sub> / 100 m
+												
+												
+											
+		
+										
+										
+		
+									</p>	
+								
+
+										
+										
+		
+									</div> 
+		
+		
+									<div class="item5" style="padding: 0%;">
+										<h2 style="text-align: center;padding: .5%;margin: 0%;background-color: #634380;color: white;">Provided Data</h2>
+										
+										<p style="text-align: center; line-height: 40px; font-size: 20px;  font-weight: bolder; margin: 10px; padding: 20px;">
+											
+												Area of the measuring tank(A) = 0.077 m<sup>2</sup> <br>
+												Acceleration due to Gravity(g) = 9.81 m/s<sup>2</sup> <br>
+											
+										</p>
+										
+									</div> 
+
+								</div>
+
+								<!-- <table id="tab1" border="1">
+									<tr>
+										<th colspan="7" style="font-size: 25px; font-weight: bolder; background-color: #634380;color: white;">Observation Table</th>
+									</tr>
+									<tr>
+										<th>S.No:</th>
+										<th>Manometer reading <br> in mm of Hg <br>(H)</th>
+										<th>Time taken for collecting <br> 10 cm rise of  water<br>in collecting tank <br>(sec)</th>
+										<th>Q<sub>th</sub> x 10<sup>-4</sup>
+			<br>
+											(m<sup>3</sup>/s)
+											</th>
+										<th>Q<sub>act</sub>  x 10<sup>-4</sup> <br>
+											(m<sup>3</sup>/s)
+											</th>
+										<th>C<sub>d</sub>
+										
+										</th>
+										<th >Avg. C<sub>d</sub>
+											</th>
+									</tr>
+									<tr>
+										<td>1.</td>
+										<td id="H1"><input type="number"></td>
+										<td id="T1"><input type="number"></td>
+										<td id="Qt1"><input type="number"></td>
+										<td id="Qact1"><input type="number"></td>
+										<td id="Cd1"><input type="number" disabled="true"></td>
+										<td  id="avg-cd" rowspan="3"><input type="number" disabled="true"></td>	
+									</tr>
+									<tr>
+										<td>2.</td>
+										<td id="H2"><input type="number"></td>
+										<td id="T2"><input type="number"></td>
+										<td id="Qt2"><input type="number"></td>
+										<td id="Qact2"><input type="number"></td>
+										<td id="Cd2"><input type="number" disabled="true"></td>
+									</tr>
+									<tr>
+										<td>3.</td>
+										<td id="H3"><input type="number"></td>
+										<td id="T3"><input type="number"></td>
+										<td id="Qt3"><input type="number"></td>
+										<td id="Qact3"><input type="number"></td>
+										<td id="Cd3"><input type="number" disabled="true"></td>
+									</tr>
+								</table> -->
+
+
+								<!-- <table id="tab1" class="result-table" border="1" style="display: none;">
+									<tr>
+										<th colspan="7" style="font-size: 25px; font-weight: bolder; background-color: #634380;color: white;">Observation Table</th>
+									</tr>
+									<tr>
+										<th>S.No:</th>
+										<th>Manometer reading <br> in mm of Hg <br>(H)</th>
+										<th>Time taken for collecting <br> 10 cm rise of  water<br>in collecting tank <br>(sec)</th>
+										<th>Q<sub>th</sub>  x 10<sup>-4</sup> 
+			<br>
+											(m<sup>3</sup>/s)
+											</th>
+										<th>Q<sub>act</sub>  x 10<sup>-4</sup> <br>
+											(m<sup>3</sup>/s)
+											</th>
+										<th>C<sub>d</sub>
+										
+										</th>
+										<th >Avg. C<sub>d</sub>
+											</th>
+									</tr>
+									<tr>
+										<td>1.</td>
+										<td id="H1"><input type="number" disabled="true" value="37"></td>
+										<td id="T1"><input type="number" disabled="true" value="35"></td>
+										<td id="Qt1"><input type="number" disabled="true" value="3.82"></td>
+										<td id="Qact1"><input type="number" disabled="true" value="3.42"></td>
+										<td id="Cd1"><input type="number" disabled="true" value="0.895"></td>
+										<td  id="avg-cd" rowspan="3"><input type="number" disabled="true" value="0.934"></td>	
+									</tr>
+									<tr>
+										<td>2.</td>
+										<td id="H2"><input type="number" disabled="true" value="50"></td>
+										<td id="T2"><input type="number" disabled="true" value="27.74"></td>
+										<td id="Qt2"><input type="number" disabled="true" value="4.44"></td>
+										<td id="Qact2"><input type="number" disabled="true" value="4.32"></td>
+										<td id="Cd2"><input type="number" disabled="true" value="0.9729"></td>
+									</tr>
+									<tr>
+										<td>3.</td>
+										<td id="H3"><input type="number" disabled="true" value="72"></td>
+										<td id="T3"><input type="number" disabled="true" value="24"></td>
+										<td id="Qt3"><input type="number" disabled="true" value="5.34"></td>
+										<td id="Qact3"><input type="number" disabled="true" value="5.0"></td>
+										<td id="Cd3"><input type="number" disabled="true" value="0.9363"></td>
+									</tr>
+								</table> -->
+								<table id="tab1" border="1">
+									<tr>
+										<th colspan="7" style="font-size: 25px; font-weight: bolder; background-color: #634380;color: white;">Given Table</th>
+									</tr>
+									<tr>
+										<th>Test Point</th>
+										<th>Diameter of section <br> at test point d <br>(mm)</th>
+										<th>Cross Sectional Area of <br>section at test point a<br> (m<sup>2</sup>)
+											</th>
+										<th>Distance from reference <br>point s
+										<br> (m)</sub>
+										</tr>
+										<tr style="text-align: center;">
+											<td>1</td>
+											<td>28</td>
+											<td>0.000615</td>
+											<td>0.030</td>
+										</tr>
+										<tr style="text-align: center;">
+											<td>2</td>
+											<td>22.5</td>
+											<td>0.000397</td>
+											<td>0.075</td>
+										</tr>
+										<tr style="text-align: center;">
+											<td>3</td>
+											<td>16.5</td>
+											<td>0.000214</td>
+											<td>0.100</td>
+										</tr>
+										<tr style="text-align: center;">
+											<td>4</td>
+											<td>14</td>
+											<td>0.000154</td>
+											<td>0.120</td>
+										</tr>
+										<tr style="text-align: center;">
+											<td>5</td>
+											<td>16.5</td>
+											<td>0.000214</td>
+											<td>0.140</td>
+										</tr>
+										<tr style="text-align: center;">
+											<td>6</td>
+											<td>22.5</td>
+											<td>0.000397</td>
+											<td>0.165</td>
+										</tr>
+										<tr style="text-align: center;">
+											<td>7</td>
+											<td>28</td>
+											<td>0.000615</td>
+											<td>0.210</td>
+										</tr>
+								</table>
+
+								<table id="tab2" border="1">
+									<tr>
+										<th colspan="10" style="font-size: 25px; font-weight: bolder; background-color: #634380;color: white;">Observation Table</th>
+									</tr>
+                            <tr>
+								<th rowspan="2">S.No:</th>
+								<th rowspan="2">H<br>(H<sub>2</sub>-H<sub>1</sub>)<br>(cm)</th>
+								
+								<th rowspan="2">t<BR>(sec)</th>
+									<th colspan="7">h(cm)<Br>at Piezometric Tube No.</th>
+										
+							</tr>
+							<!-- <tr>
+								<td style="text-align: center;">1</td>
+										<td style="text-align: center;">2</td>
+										<Td style="text-align: center;">3</Td>
+										<td style="text-align: center;">4</td>
+										<td style="text-align: center;">5</td>
+										<td style="text-align: center;">6</td>
+										<td style="text-align: center;">7</td>
+
+							</tr> -->
+                             <tr>
+								<!-- <td>1</td>
+								<td rowspan="2"><input type="number" enabled="true" ></td>
+										<td rowspan="2"><input type="number" enabled="true" ></td> -->
+										<td style="text-align: center;">1</td>
+										<td style="text-align: center;">2</td>
+										<Td style="text-align: center;">3</Td>
+										<td style="text-align: center;">4</td>
+										<td style="text-align: center;">5</td>
+										<td style="text-align: center;">6</td>
+										<td style="text-align: center;">7</td>
+										</tr>
+										<tr>
+											
+										</tr>
+                               <tr>
+								<td >1</td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="H3"><input type="number" enabled="true" ></td>
+										<td id="T3"><input type="number" enabled="true" ></td>
+										<td id="Qt3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true"></td>
+							   </tr>
+							   <tr>
+								<td >2</td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="H3"><input type="number" enabled="true" ></td>
+										<td id="T3"><input type="number" enabled="true" ></td>
+										<td id="Qt3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true"></td>
+							   </tr>
+								</table>
+
+                                <table id="tab3" border="1">
+									<tr>
+										<th colspan="8" style="font-size: 25px; font-weight: bolder; background-color: #634380;color: white;">Calculation Table</th>
+									</tr>
+									<tr>
+										<th>Tube No.</th>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<td>5</td>
+										<td>6</td>
+										<td>7</td>
+									</tr>
+                                     <tr>
+										<th>V (m/s)</th> 
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="H3"><input type="number" enabled="true" ></td>
+										<td id="T3"><input type="number" enabled="true" ></td>
+										<td id="Qt3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+
+									 </tr>
+									 <tr rowspan="1.3">
+										<th> P/ρg=h/100
+										</th>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="H3"><input type="number" enabled="true" ></td>
+										<td id="T3"><input type="number" enabled="true" ></td>
+										<td id="Qt3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+
+									 </tr>
+									 <tr>
+										<th> V<sup>2</sup>/2g
+										</th>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="H3"><input type="number" enabled="true" ></td>
+										<td id="T3"><input type="number" enabled="true" ></td>
+										<td id="Qt3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+
+									 </tr>
+									 <tr>
+										<th>E
+										</th>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="H3"><input type="number" enabled="true" ></td>
+										<td id="T3"><input type="number" enabled="true" ></td>
+										<td id="Qt3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+										<td id="Cd3"><input type="number" enabled="true" ></td>
+										<td id="Qact3"><input type="number" enabled="true" ></td>
+
+									 </tr>
+								</table>
+								
+
+
+								<button type="button" class="checkYourResult" style="border: solid black 3px; border-radius: 5px; padding: 5px;" onclick="calculate()" >Calculate</button>
+
+								<button id="check-button" type="button" class="checkYourResult" style="border: solid black 3px; border-radius: 5px; padding: 5px;" disabled="true" onclick="checkYourResult()" >Check Your Result</button>
+
+								<div  style="margin:auto; display: flex; gap: 40px ;">
+									<button style=" margin-bottom: 40px; border: solid black 3px; border-radius: 5px; padding: 5px; " onclick="window.print()">Print this page</button>
+									
+								</div>
+
+
+							</div>
+
+
+						</div>
+					</div> 
+
+						
+
+
+						
+
+						
+
+				<!-- Add JS at the bottom of HTML file --> 
+				<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+				<script src="https://apis.google.com/js/api.js"></script>
+					<script src="./js/main.js"></script>
+					<script src="./js/calculation.js"></script>
+			</body>
+			</html>
